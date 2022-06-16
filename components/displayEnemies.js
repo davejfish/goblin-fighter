@@ -28,9 +28,12 @@ export default function createDisplayEnemies(root, { handleAttack }) {
                 div.append(span1, button);
                 enemyBox.append(div);
 
-                button.addEventListener('click', () => {
-                    handleAttack(battleGroup[0], combatant);
-                });
+                if (!combatant.defeated) {
+                    button.addEventListener('click', () => {
+                        handleAttack(battleGroup[0], combatant);
+                    });
+                }
+                
             }
         }
     };
