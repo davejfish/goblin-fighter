@@ -6,7 +6,20 @@ state.battleGroup = [{
     hp: 20,
     defeated: false,
     enemy: false,
-}];
+},
+{
+    name: 'biggie',
+    hp: 8,
+    defeated: false,
+    enemy: true,
+},
+{
+    name: 'smalls',
+    hp: 8,
+    defeated: false,
+    enemy: true,
+},
+];
 state.messages = [
     'here is some text',
     'another line of text',
