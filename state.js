@@ -67,3 +67,8 @@ export function updateHP(combatant, damage) {
         state.messages.push(`${fighter.name} has been defeated`);
     }
 }
+
+export function removeFighter(combatant) {
+    const index = state.battleGroup.indexOf(combatant);
+    state.battleGroup.splice(index, 1);
+}

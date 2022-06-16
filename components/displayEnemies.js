@@ -1,4 +1,4 @@
-export default function createDisplayEnemies(root, { handleAttack }) {
+export default function createDisplayEnemies(root, { handleAttack, handleRemoveFighter }) {
     const enemyBox = root.querySelector('.repeat-grid');
 
     return ({ battleGroup }) => {
@@ -30,8 +30,7 @@ export default function createDisplayEnemies(root, { handleAttack }) {
 
                 if (combatant.defeated) {
                     button.addEventListener('click', () => {
-                        div.classList.add('hidden');
-                        return;
+                        handleRemoveFighter(combatant);
                     });
                 }
 

@@ -9,6 +9,7 @@ import createUpdatePlayer from './components/updatePlayer.js';
 import state, {
     updateBattleGroup,
     updateHP,
+    removeFighter,
 } from './state.js';
 // Create each component: 
 // - pass in the root element via querySelector
@@ -39,7 +40,12 @@ const displayEnemies = createDisplayEnemies(document.querySelector('#enemy-box')
             updateHP(attacker, counter);
         }
         display();
-    } 
+    },
+    
+    handleRemoveFighter: (combatant) => {
+        removeFighter(combatant);
+        display();
+    }
 });
 
 const updatePlayer = createUpdatePlayer(document.querySelector('.player-grid'));
