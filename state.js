@@ -1,38 +1,40 @@
+import { getRandomItem } from './utils.js';
+
 // set state to an empty object
 const state = {};
 
-state.battleGroup = [{
-    name: 'hero',
-    hp: 20,
-    defeated: false,
-    enemy: false,
-},
-{
-    name: 'biggie',
-    hp: 8,
-    defeated: false,
-    enemy: true,
-},
-{
-    name: 'smalls',
-    hp: 8,
-    defeated: false,
-    enemy: true,
-},
-];
-state.messages = [
-    'here is some text',
-    'another line of text',
-    'and one more',
-];
-state.damage = [0, 1, 1, 2, 2, 3];
+state.battleGroup = [];
+state.messages = [];
+state.damage = [];
+state.hp = [];
 
 // initialize state, also used in test
 export function initialize() {
-    // What is the initial shape of state?
-    // For example:
-    // state.game = null;
-    // state.pastGames = [];
+    state.hp = [1, 2, 3, 4, 5];
+
+    state.battleGroup = [{
+        name: 'hero',
+        hp: 20,
+        defeated: false,
+        enemy: false,
+    },
+    {
+        name: 'biggie',
+        hp: getRandomItem(state.hp),
+        defeated: false,
+        enemy: true,
+    },
+    {
+        name: 'smalls',
+        hp: getRandomItem(state.hp),
+        defeated: false,
+        enemy: true,
+    },
+    ];
+    
+    state.messages = ['attack an enemy'] ;
+    
+    state.damage = [0, 1, 1, 2, 2, 3];
 }
 // call initialize
 initialize();
@@ -44,9 +46,20 @@ export default state;
 export function updateBattleGroup(name) {
     const enemy = {
         name,
-        hp: 8,
+        hp: getRandomItem(state.hp),
         defeated: false,
         enemy: true,
     };
     state.battleGroup.push(enemy);
+}
+
+export function updateHP(combatant, damage) {
+    const index = state.battleGroup.indexOf(combatant);
+    const fighter = state.battleGroup[index];
+    fighter.hp -= damage;
+    if (fighter.hp <= 0) {
+        fighter.hp = 0;
+        fighter.defeated = true;
+        state.messages.push(`${fighter.name} has been defeated`);
+    }
 }

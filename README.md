@@ -1,5 +1,17 @@
 ## The Golden Rule:
 
+## todo
+
+## figure out why the hell i can't grab elements in attack.js
+
+## add event listeners, if its defeated clicking it makes it go away
+
+## otherwise it attacks it
+
+## defeated combatants get their picture rotated
+
+##
+
 🦸 🦸‍♂️ `Stop starting and start finishing.` 🏁
 
 1. Limit Work in Progress (WIP)
