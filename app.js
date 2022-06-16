@@ -4,6 +4,7 @@ import { getRandomItem } from './utils.js';
 import createBattleText from './components/battleText.js';
 import createDisplayEnemies from './components/displayEnemies.js';
 import createNewEnemy from './components/newEnemy.js';
+import createUpdatePlayer from './components/updatePlayer.js';
 // import state and dispatch functions
 import state, {
     updateBattleGroup,
@@ -23,6 +24,7 @@ const newEnemy = createNewEnemy(document.querySelector('#create-enemy'), {
 });
 
 const displayBattleText = createBattleText(document.querySelector('#battle-text'));
+const updatePlayer = createUpdatePlayer(document.querySelector('.player-grid'));
 
 const displayEnemies = createDisplayEnemies(document.querySelector('#enemy-box'), { 
     handleAttack: (attacker, defender) => {
@@ -43,6 +45,7 @@ function display() {
     // Call each component passing in props that are the pieces of state this component needs
     newEnemy({ battleGroup: state.battleGroup });
     displayEnemies({ battleGroup: state.battleGroup });
+    updatePlayer({ battleGroup: state.battleGroup });
     displayBattleText({ messages: state.messages });
 }
 

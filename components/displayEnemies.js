@@ -25,16 +25,10 @@ export default function createDisplayEnemies(root, { handleAttack }) {
                 enemyBox.append(div);
 
                 button.addEventListener('click', () => {
-                    console.log('clicked');
                     handleAttack(battleGroup[0], combatant);
                 });
             }
-            // const buttons = enemyBox.querySelectorAll('button');
-            // console.log(buttons);
-            
-            
+            // add something here for updating hero?
         }
-
-        
     };
 }
