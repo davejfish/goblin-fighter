@@ -28,6 +28,13 @@ export default function createDisplayEnemies(root, { handleAttack }) {
                 div.append(span1, button);
                 enemyBox.append(div);
 
+                if (combatant.defeated) {
+                    button.addEventListener('click', () => {
+                        div.classList.add('hidden');
+                        return;
+                    });
+                }
+
                 if (!combatant.defeated) {
                     button.addEventListener('click', () => {
                         handleAttack(battleGroup[0], combatant);

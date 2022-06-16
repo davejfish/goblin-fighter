@@ -23,6 +23,7 @@ test('updating hp and defeated status', (expect) => {
         hp: 18,
         defeated: false,
         enemy: false,
+        enemiesDefeated: 0,
     };
     updateHP(combatant, 2);
     expect.deepEqual(combatant, expected);
@@ -31,3 +32,4 @@ test('updating hp and defeated status', (expect) => {
     expect.equal(combatant.hp, 0);
     expect.equal(combatant.defeated, true);
 });
+
