@@ -1,6 +1,6 @@
 import state, {
     initialize,
-    // import dispatch functions
+    updateBattleGroup,
 } from '../state.js';
 
 // make sure state is at known starting point
@@ -8,14 +8,51 @@ QUnit.module('state', { beforeEach: initialize });
 
 const test = QUnit.test;
 
-test('the first state test...', (expect) => {
-    // what is the initial expected state?
+test('adding member to battleGroup', (expect) => {
+    expect.deepEqual(state.battleGroup, [{
+        name: 'hero',
+        hp: 20,
+        defeated: false,
+        enemy: false,
+    },
+    {
+        name: 'biggie',
+        hp: 8,
+        defeated: false,
+        enemy: true,
+    },
+    {
+        name: 'smalls',
+        hp: 8,
+        defeated: false,
+        enemy: true,
+    },
+    ]);
 
-    // use the action
-
-    // what should the state be now?
-
-
-    // remove this line when starting your test
-    expect.deepEqual(state, {});
+    updateBattleGroup('gobinator');
+    expect.deepEqual(state.battleGroup, [{
+        name: 'hero',
+        hp: 20,
+        defeated: false,
+        enemy: false,
+    },
+    {
+        name: 'biggie',
+        hp: 8,
+        defeated: false,
+        enemy: true,
+    },
+    {
+        name: 'smalls',
+        hp: 8,
+        defeated: false,
+        enemy: true,
+    },
+    {
+        name: 'gobinator',
+        hp: 8,
+        defeated: false,
+        enemy: true,
+    },
+    ]);
 });

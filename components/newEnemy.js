@@ -10,7 +10,7 @@ export default function createNewEnemy(root, { handleCreateEnemy }) {
         form.reset();
     });
 
-    return ({ battleGroup }) => {
+    return () => {
 
     };
 }

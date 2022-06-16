@@ -17,8 +17,7 @@ const newEnemy = createNewEnemy(document.querySelector('#create-enemy'), {
         updateBattleGroup(name);
         display();
     }
-}
-);
+});
 
 const displayBattleText = createBattleText(document.querySelector('#battle-text'));
 const displayEnemies = createDisplayEnemies(document.querySelector('#enemy-box'));
