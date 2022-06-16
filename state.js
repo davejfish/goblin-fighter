@@ -3,13 +3,7 @@ import { getRandomItem } from './utils.js';
 // set state to an empty object
 const state = {};
 
-state.battleGroup = [{
-    name: 'hero',
-    hp: 20,
-    defeated: false,
-    enemy: false,
-    enemiesDefeated: 0,
-}];
+state.battleGroup = [];
 state.messages = [];
 state.damage = [];
 state.hp = [];

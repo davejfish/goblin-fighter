@@ -16,6 +16,10 @@ export default function createDisplayEnemies(root, { handleAttack }) {
                 
                 let img = document.createElement('img');
                 img.src = './assets/goblin.png';
+
+                if (combatant.defeated) {
+                    img.classList.add('dead');
+                }
                 
                 let span2 = document.createElement('span');
                 span2.textContent = `hp: ${combatant.hp}`;
@@ -28,7 +32,6 @@ export default function createDisplayEnemies(root, { handleAttack }) {
                     handleAttack(battleGroup[0], combatant);
                 });
             }
-            // add something here for updating hero?
         }
     };
 }

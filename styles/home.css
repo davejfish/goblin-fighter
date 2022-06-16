@@ -120,3 +120,7 @@ p span {
 #create-enemy {
     grid-area: create-enemy;
 }
+
+.dead {
+    transform: rotate(90deg);
+}
