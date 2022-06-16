@@ -65,6 +65,7 @@ p span {
 }
 
 .enemy-box {
+    display: block;
     text-align: center;
 }
 
@@ -87,6 +88,11 @@ p span {
     height: 100%;
     text-align: center;
     padding: 10px;
+}
+
+.combat-text span {
+    display: block;
+    margin: 10px;
 }
 
 .form {
