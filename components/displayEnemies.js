@@ -1,9 +1,8 @@
 export default function createDisplayEnemies(root) {
     const enemyBox = root.querySelector('.repeat-grid');
 
-    enemyBox.innerHTML = '';
-
     return ({ battleGroup }) => {
+        enemyBox.innerHTML = '';
         for (let combatant of battleGroup) {
             if (combatant.enemy) {
                 const div = document.createElement('div');

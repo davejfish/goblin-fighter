@@ -40,3 +40,13 @@ initialize();
 export default state;
 
 // export dispatch functions that modify state
+
+export function updateBattleGroup(name) {
+    const enemy = {
+        name,
+        hp: 8,
+        defeated: false,
+        enemy: true,
+    };
+    state.battleGroup.push(enemy);
+}
