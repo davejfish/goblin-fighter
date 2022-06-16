@@ -1,5 +1,6 @@
 import state, {
     initialize,
+    removeFighter,
     updateBattleGroup,
     updateHP,
 } from '../state.js';
@@ -33,3 +34,12 @@ test('updating hp and defeated status', (expect) => {
     expect.equal(combatant.defeated, true);
 });
 
+test('testing removing fighter from battleGroup', (expect) => {
+    const combatant = state.battleGroup[1];
+
+    const expected = 2;
+    removeFighter(combatant);
+    const actual = state.battleGroup.length;
+
+    expect.equal(actual, expected);
+});
