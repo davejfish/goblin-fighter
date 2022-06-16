@@ -24,13 +24,15 @@ const newEnemy = createNewEnemy(document.querySelector('#create-enemy'), {
 });
 
 const displayBattleText = createBattleText(document.querySelector('#battle-text'));
-const updatePlayer = createUpdatePlayer(document.querySelector('.player-grid'));
 
 const displayEnemies = createDisplayEnemies(document.querySelector('#enemy-box'), { 
     handleAttack: (attacker, defender) => {
         const damage = getRandomItem(state.damage);
         state.messages.push(`${attacker.name} hit ${defender.name} for ${damage} damage`);
         updateHP(defender, damage);
+        if (defender.defeated) {
+            attacker.enemiesDefeated++;
+        }
         if (!defender.defeated) {
             const counter = getRandomItem(state.damage);
             state.messages.push(`${defender.name} counters for ${counter} damage`);
@@ -39,6 +41,8 @@ const displayEnemies = createDisplayEnemies(document.querySelector('#enemy-box')
         display();
     } 
 });
+
+const updatePlayer = createUpdatePlayer(document.querySelector('.player-grid'));
 
 // Roll-up display function that renders (calls with state) each component
 function display() {

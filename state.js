@@ -3,7 +3,13 @@ import { getRandomItem } from './utils.js';
 // set state to an empty object
 const state = {};
 
-state.battleGroup = [];
+state.battleGroup = [{
+    name: 'hero',
+    hp: 20,
+    defeated: false,
+    enemy: false,
+    enemiesDefeated: 0,
+}];
 state.messages = [];
 state.damage = [];
 state.hp = [];
@@ -17,18 +23,21 @@ export function initialize() {
         hp: 20,
         defeated: false,
         enemy: false,
+        enemiesDefeated: 0,
     },
     {
         name: 'biggie',
         hp: getRandomItem(state.hp),
         defeated: false,
         enemy: true,
+        enemiesDefeated: 0,
     },
     {
         name: 'smalls',
         hp: getRandomItem(state.hp),
         defeated: false,
         enemy: true,
+        enemiesDefeated: 0,
     },
     ];
     
@@ -49,6 +58,7 @@ export function updateBattleGroup(name) {
         hp: getRandomItem(state.hp),
         defeated: false,
         enemy: true,
+        enemiesDefeated: 0,
     };
     state.battleGroup.push(enemy);
 }
