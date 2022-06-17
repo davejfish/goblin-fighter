@@ -2,13 +2,15 @@
 
 ## todo
 
-## figure out why the hell i can't grab elements in attack.js
+## add multiple options for monster images in forms
 
-## add event listeners, if its defeated clicking it makes it go away
+## add sound effects
 
-## otherwise it attacks it
+## 5 hp restored for every 5 gobs killed? modulous remainder 0 +hp??
 
-## defeated combatants get their picture rotated
+## consider making the player side match the enemy side with 4 heroes
+
+## turn system??
 
 ##
 
