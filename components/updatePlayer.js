@@ -6,5 +6,10 @@ export default function createUpdatePlayer(root) {
 
         const enemiesDefeated = root.querySelector('#enemies-defeated');
         enemiesDefeated.textContent = `defeated enemies: ${state.battleGroup[0].enemiesDefeated}`;
+
+        if (state.battleGroup[0].hp <= 0) {
+            let heroImage = document.querySelector('#hero-image');
+            heroImage.classList.add('dead');
+        }
     };
 }

@@ -28,6 +28,8 @@ export default function createDisplayEnemies(root, { handleAttack, handleRemoveF
                 div.append(span1, button);
                 enemyBox.append(div);
 
+                if (battleGroup[0].hp <= 0) return;
+
                 if (combatant.defeated) {
                     button.addEventListener('click', () => {
                         handleRemoveFighter(combatant);
@@ -39,7 +41,6 @@ export default function createDisplayEnemies(root, { handleAttack, handleRemoveF
                         handleAttack(battleGroup[0], combatant);
                     });
                 }
-                
             }
         }
     };
