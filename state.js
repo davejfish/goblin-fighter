@@ -72,3 +72,12 @@ export function removeFighter(combatant) {
     const index = state.battleGroup.indexOf(combatant);
     state.battleGroup.splice(index, 1);
 }
+
+export function restoreHP(attacker) {
+    const result = attacker.enemiesDefeated % 5;
+    if (result === 0) {
+        attacker.hp += 5;
+        if (attacker.hp > 20) attacker.hp = 20;
+        state.messages.push(`${attacker.name} recovered 5 hp!`);
+    } 
+}

@@ -3,6 +3,7 @@ import state, {
     removeFighter,
     updateBattleGroup,
     updateHP,
+    restoreHP,
 } from '../state.js';
 
 // make sure state is at known starting point
@@ -42,4 +43,45 @@ test('testing removing fighter from battleGroup', (expect) => {
     const actual = state.battleGroup.length;
 
     expect.equal(actual, expected);
+});
+
+test('recovering hp', (expect) => {
+    state.battleGroup[0].enemiesDefeated = 4;
+    state.battleGroup[0].hp = 15;
+
+    let actual = state.battleGroup[0];
+    let expected = {
+        name: 'hero',
+        hp: 15,
+        defeated: false,
+        enemy: false,
+        enemiesDefeated: 4,
+    };
+    restoreHP(state.battleGroup[0]);
+    expect.deepEqual(actual, expected);
+
+    state.battleGroup[0].enemiesDefeated = 5;
+    restoreHP(state.battleGroup[0]);
+    actual = state.battleGroup[0];
+    expected = {
+        name: 'hero',
+        hp: 20,
+        defeated: false,
+        enemy: false,
+        enemiesDefeated: 5,
+    };
+    expect.deepEqual(actual, expected);
+    expect.deepEqual(state.messages, ['attack an enemy', `${state.battleGroup[0].name} recovered 5 hp!`]);
+    
+    state.battleGroup[0].hp = 18;
+    restoreHP(state.battleGroup[0]);
+    actual = state.battleGroup[0];
+    expected = {
+        name: 'hero',
+        hp: 20,
+        defeated: false,
+        enemy: false,
+        enemiesDefeated: 5,
+    };
+    expect.deepEqual(actual, expected);
 });

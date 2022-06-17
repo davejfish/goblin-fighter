@@ -10,6 +10,7 @@ import state, {
     updateBattleGroup,
     updateHP,
     removeFighter,
+    restoreHP,
 } from './state.js';
 // Create each component: 
 // - pass in the root element via querySelector
@@ -33,6 +34,7 @@ const displayEnemies = createDisplayEnemies(document.querySelector('#enemy-box')
         updateHP(defender, damage);
         if (defender.defeated) {
             attacker.enemiesDefeated++;
+            restoreHP(attacker);
         }
         if (!defender.defeated) {
             const counter = getRandomItem(state.damage);
