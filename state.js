@@ -18,6 +18,8 @@ export function initialize() {
         defeated: false,
         enemy: false,
         enemiesDefeated: 0,
+        level: 1,
+        exp: 0,
     },
     {
         name: 'biggie',
@@ -25,6 +27,8 @@ export function initialize() {
         defeated: false,
         enemy: true,
         enemiesDefeated: 0,
+        level: 1,
+        exp: 0,
     },
     {
         name: 'smalls',
@@ -32,6 +36,8 @@ export function initialize() {
         defeated: false,
         enemy: true,
         enemiesDefeated: 0,
+        level: 1,
+        exp: 0,
     },
     ];
     
@@ -53,6 +59,8 @@ export function updateBattleGroup(name) {
         defeated: false,
         enemy: true,
         enemiesDefeated: 0,
+        level: 1,
+        exp: 0,
     };
     state.battleGroup.push(enemy);
 }
@@ -74,10 +82,21 @@ export function removeFighter(combatant) {
 }
 
 export function restoreHP(attacker) {
+    attacker.enemiesDefeated++;
+    
     const result = attacker.enemiesDefeated % 5;
     if (result === 0) {
         attacker.hp += 5;
         if (attacker.hp > 20) attacker.hp = 20;
         state.messages.push(`${attacker.name} recovered 5 hp!`);
     } 
+}
+
+export function getEXP(attacker) {
+    attacker.exp++;
+    const result = attacker.exp % 10;
+    if (result === 0) {
+        attacker.level++;
+        state.messages.push(`${attacker.name} has reached level ${attacker.level}`);
+    }
 }

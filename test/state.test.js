@@ -4,6 +4,7 @@ import state, {
     updateBattleGroup,
     updateHP,
     restoreHP,
+    getEXP,
 } from '../state.js';
 
 // make sure state is at known starting point
@@ -26,6 +27,8 @@ test('updating hp and defeated status', (expect) => {
         defeated: false,
         enemy: false,
         enemiesDefeated: 0,
+        level: 1,
+        exp: 0,
     };
     updateHP(combatant, 2);
     expect.deepEqual(combatant, expected);
@@ -46,7 +49,7 @@ test('testing removing fighter from battleGroup', (expect) => {
 });
 
 test('recovering hp', (expect) => {
-    state.battleGroup[0].enemiesDefeated = 4;
+    state.battleGroup[0].enemiesDefeated = 3;
     state.battleGroup[0].hp = 15;
 
     let actual = state.battleGroup[0];
@@ -56,11 +59,13 @@ test('recovering hp', (expect) => {
         defeated: false,
         enemy: false,
         enemiesDefeated: 4,
+        level: 1,
+        exp: 0,
     };
     restoreHP(state.battleGroup[0]);
     expect.deepEqual(actual, expected);
 
-    state.battleGroup[0].enemiesDefeated = 5;
+    state.battleGroup[0].enemiesDefeated = 4;
     restoreHP(state.battleGroup[0]);
     actual = state.battleGroup[0];
     expected = {
@@ -69,11 +74,14 @@ test('recovering hp', (expect) => {
         defeated: false,
         enemy: false,
         enemiesDefeated: 5,
+        level: 1,
+        exp: 0,
     };
     expect.deepEqual(actual, expected);
     expect.deepEqual(state.messages, ['attack an enemy', `${state.battleGroup[0].name} recovered 5 hp!`]);
     
     state.battleGroup[0].hp = 18;
+    state.battleGroup[0].enemiesDefeated = 4;
     restoreHP(state.battleGroup[0]);
     actual = state.battleGroup[0];
     expected = {
@@ -82,6 +90,38 @@ test('recovering hp', (expect) => {
         defeated: false,
         enemy: false,
         enemiesDefeated: 5,
+        level: 1,
+        exp: 0,
     };
     expect.deepEqual(actual, expected);
+});
+
+test('increasing exp and level state', (expect) => {
+    getEXP(state.battleGroup[0]);
+    let actual = state.battleGroup[0];
+    let expected = {
+        name: 'hero',
+        hp: 20,
+        defeated: false,
+        enemy: false,
+        enemiesDefeated: 0,
+        level: 1,
+        exp: 1,
+    };
+    expect.deepEqual(actual, expected);
+
+    state.battleGroup[0].exp = 9;
+    getEXP(state.battleGroup[0]);
+    actual = state.battleGroup[0];
+    expected = {
+        name: 'hero',
+        hp: 20,
+        defeated: false,
+        enemy: false,
+        enemiesDefeated: 0,
+        level: 2,
+        exp: 10,
+    };
+    expect.deepEqual(actual, expected);
+    expect.deepEqual(state.messages, ['attack an enemy', `hero has reached level 2`]);
 });

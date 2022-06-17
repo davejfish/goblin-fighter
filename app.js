@@ -11,6 +11,7 @@ import state, {
     updateHP,
     removeFighter,
     restoreHP,
+    getEXP,
 } from './state.js';
 // Create each component: 
 // - pass in the root element via querySelector
@@ -29,11 +30,18 @@ const displayBattleText = createBattleText(document.querySelector('#battle-text'
 
 const displayEnemies = createDisplayEnemies(document.querySelector('#enemy-box'), { 
     handleAttack: (attacker, defender) => {
-        const damage = getRandomItem(state.damage);
-        state.messages.push(`${attacker.name} hit ${defender.name} for ${damage} damage`);
+        const damage = getRandomItem(state.damage) * attacker.level;
+        
+        if (damage === 0) {
+            state.messages.push(`${attacker.name} missed ${defender.name}`);
+        }
+        else {
+            state.messages.push(`${attacker.name} hit ${defender.name} for ${damage} damage`);
+        }
         updateHP(defender, damage);
+        
         if (defender.defeated) {
-            attacker.enemiesDefeated++;
+            getEXP(attacker);
             restoreHP(attacker);
         }
         if (!defender.defeated) {

@@ -6,13 +6,9 @@
 
 ## add sound effects
 
-## 5 hp restored for every 5 gobs killed? modulous remainder 0 +hp??
-
 ## consider making the player side match the enemy side with 4 heroes
 
 ## turn system??
-
-##
 
 🦸 🦸‍♂️ `Stop starting and start finishing.` 🏁
 
